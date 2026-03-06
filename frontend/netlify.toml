@@ -1,0 +1,18 @@
+# netlify.toml
+
+[build]
+  command = "npm run build"
+  publish = "dist"   # or "build" if using React/Next.js
+
+# Redirect all frontend routes to index.html (React Router / SPA support)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Proxy API requests to your FastAPI backend
+[[redirects]]
+  from = "/api/*"
+  to = "https://pdfmagic-backend.onrender.com/:splat"
+  status = 200
+  force = true
